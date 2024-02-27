@@ -121,6 +121,12 @@ p {
     color: whitesmoke;
 }
 
+#home{
+    margin-top: 1em;
+    font-size: 2rem;
+}
+
+#home:hover,
 #book:hover,
 #pdf:hover,
 #youtube:hover,
@@ -129,6 +135,7 @@ p {
     color:whitesmoke;
 }
 
+#home,
 #book,
 #pdf,
 #youtube,
