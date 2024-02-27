@@ -84,6 +84,10 @@ h3 {
         background:  rgb(101, 188, 70);
 }
 
+#btn-swagger:hover {
+    background: rgb(255, 111, 0);
+}
+
 .downloads {
     display: flex;
     justify-content: end; 
@@ -100,13 +104,15 @@ p {
     text-align: center;
     color: whitesmoke;
 }
-  
+
+#book:hover,
 #pdf:hover,
 #youtube:hover
 {
     color:whitesmoke;
 }
 
+#book,
 #pdf,
 #youtube
 {
@@ -117,7 +123,7 @@ p {
 @media (max-width: 800px) {
     main, footer {
         width: 100%vh;
-        background: white; 
+        background: rgb(25, 39, 52); 
         padding: 1.25em, 0.2rem;
         margin: 0.35em, 0;
         display: flex;
@@ -159,17 +165,4 @@ p {
  
 }  
 
-
-.lowerMenu {
-    justify-content: center; 
-    gap: 1.2em;
-}
-
-.socialNetworks {
-    justify-content: center; 
-    align-items: center;
-    align-content: center;
-    font-size: 2.1rem;
-    padding: 0;
-}
 }
