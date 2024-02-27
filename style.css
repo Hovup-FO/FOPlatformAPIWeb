@@ -11,10 +11,10 @@ body {
 
 main {
     font-family: 'Manrope', sans-serif;
-    width: 95%;
+    width: 100%vh;
     background-color:rgb(25, 39, 52); 
-    padding: 1.1em;
-    margin: 0.32em auto;
+    padding: 1em;
+    margin: 0;
     display: flex;
     flex-direction: column; 
     align-items: center;
@@ -29,15 +29,20 @@ main {
     margin-bottom: 1em;
 }  
 
+#img-tkm-examples{
+    width: 5em;
+    height: 5em;
+}
+
 footer {
-    width: 95%;
+    width: 100%vh;
     background: rgb(25, 39, 52);
     font-family: 'Manrope', sans-serif;
-    padding: 1.1em;
-    margin: 0.32em auto;
+    padding: 0;
+    margin: 0;
+    margin-top: 0.2em;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
     align-items: center;
     align-content: center;
     border-radius: 5px; 
@@ -73,6 +78,7 @@ h3 {
 
 #btn-swagger {
         padding: 0.5em 1.875em;
+        width: 16rem;
         margin: 1em, 0.625em;
         border: none;
         font-family: inherit;
@@ -99,22 +105,34 @@ h3 {
     font-size: 3rem;
 }
 
+#examples {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    align-content: center;
+    gap: 0.5em;
+    margin-left: 1.25em;
+    margin-right: 1.25em;
+    font-size: 2rem;
+}
+
 p {
     font-size: 0.8rem;
-    text-align: center;
     color: whitesmoke;
 }
 
 #book:hover,
 #pdf:hover,
-#youtube:hover
+#youtube:hover,
+#whatsapp:hover
 {
     color:whitesmoke;
 }
 
 #book,
 #pdf,
-#youtube
+#youtube,
+#whatsapp
 {
     color: rgb(101, 188, 70);
 }
@@ -139,10 +157,6 @@ p {
     height: 11em;
 }  
 
- footer {
-        flex-direction: column-reverse;
-}
-
   h1 {
     font-size: 1.1rem;
     margin-bottom: 1em;
@@ -160,9 +174,15 @@ h3 {
 }  
 
 p {
-    margin-bottom: 0.2em;
     font-size: 0.5rem;
  
 }  
+
+.downloads {
+    gap: 0.8em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    font-size: 3rem;
+}
 
 }
