@@ -12,7 +12,7 @@ body {
 main {
     font-family: 'Manrope', sans-serif;
     width: 95%;
-    background-color: whitesmoke; 
+    background-color:rgb(25, 39, 52); 
     padding: 1.1em;
     margin: 0.32em auto;
     display: flex;
@@ -31,11 +31,12 @@ main {
 
 footer {
     width: 95%;
-    background: whitesmoke;
+    background: rgb(25, 39, 52);
     font-family: 'Manrope', sans-serif;
     padding: 1.1em;
     margin: 0.32em auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-between; 
     align-items: center;
     align-content: center;
@@ -44,11 +45,12 @@ footer {
 
 h1 {
     font-size: 1.5rem;
-    color:  rgb(35, 121, 123);
+    color:  whitesmoke;
     font-weight: bold;
     text-align: justify;
     padding:0, 1em;
     margin: 0;
+    margin-bottom: 1em;
     line-height: 1.5;
 }
 
@@ -57,8 +59,8 @@ h2 {
     font-family: 'Manrope', sans-serif;
     text-align: center;
     font-size: 2.5rem;
-    color: rgb(126, 0, 63);
-    text-shadow: 0px 0px 10 black;
+    color: rgb(101, 188, 70);
+    text-shadow: 0px 0px 10 whitesmoke;
     padding: 0, 1em;
     margin: 0;
 }
@@ -66,12 +68,20 @@ h2 {
 h3 {
     font-size: 1.2rem;
     text-align: center;
-    color: black;
+    color: whitesmoke;
 }
 
-#proximamente {
-    display: flex;
-    gap: 1em
+#btn-swagger {
+        padding: 0.5em 1.875em;
+        margin: 1em, 0.625em;
+        border: none;
+        font-family: inherit;
+        font-weight: 400;
+        font-size: 1.2rem;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        background:  rgb(101, 188, 70);
 }
 
 .downloads {
@@ -88,59 +98,21 @@ h3 {
 p {
     font-size: 0.8rem;
     text-align: center;
-    color: black;
+    color: whitesmoke;
 }
   
-
-.lowerMenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: end; 
-    align-items: center;
-    align-content: center;
-    gap: 1.25em;
-}
-
-.socialNetworks {
-    display: flex;
-    justify-content: end; 
-    align-items: center;
-    align-content: center;
-    gap: 1em;
-    margin-left: 1.25em;
-    margin-right: 1.25em;
-    padding-left: 1em;
-    font-size: 2.1rem;
-}
-
-#whatsapp,
 #pdf:hover,
 #youtube:hover
 {
-    color:  rgb(35, 121, 123);
+    color:whitesmoke;
 }
-#whatsapp:hover,
+
 #pdf,
 #youtube
 {
-    color: rgb(126, 0, 63);
+    color: rgb(101, 188, 70);
 }
 
-#facebook,
-#instagram,
-#linkedin,
-#x 
-{
-    color: black;
-}
-
-#facebook:hover,
-#instagram:hover,
-#linkedin:hover,
-#x:hover
-{
-    color: rgb(130, 134, 137);
-}
 
 @media (max-width: 800px) {
     main, footer {
