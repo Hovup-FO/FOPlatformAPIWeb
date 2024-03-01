@@ -27,6 +27,7 @@ main {
     width: 13em;
     height: 13em;
     margin-bottom: 1em;
+    margin-top: 3em;
 }  
 
 #img-tkm-examples{
@@ -55,7 +56,7 @@ h1 {
     text-align: justify;
     padding:0, 1em;
     margin: 0;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     line-height: 1.5;
 }
 
@@ -79,7 +80,7 @@ h3 {
 #btn-swagger {
         padding: 0.5em 1.875em;
         width: 16rem;
-        margin: 1em, 0.625em;
+        margin: 2em, 0.625em;
         border: none;
         font-family: inherit;
         font-weight: 400;
@@ -162,6 +163,8 @@ p {
 
     width: 11em;
     height: 11em;
+    margin-bottom: 1em;
+    margin-top: 0em;
 }  
 
   h1 {
