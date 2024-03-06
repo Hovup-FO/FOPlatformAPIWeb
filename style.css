@@ -200,8 +200,8 @@ a:link {
 
   #img-tkm {
 
-    width: 11em;
-    height: 11em;
+    width: 12em;
+    height: 12em;
     margin-bottom: 1em;
     margin-top: 1em;
 }  
@@ -239,6 +239,10 @@ p {
 
 .actions p{
     font-size: 0.6rem;
+}
+
+#legend{
+    margin: 0.5em 0;
 }
 
 }
