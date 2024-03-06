@@ -165,19 +165,19 @@ p {
 
 a {
     color: rgb(101, 188, 70); 
-    font-weight: bold;
  }
 
 a:link {
     color: rgb(101, 188, 70); 
+    font-weight: bold;
  }
  
  a:visited {
-     color:white; 
+     color:rgb(101, 188, 70) 
   }
  
  a:hover {
-     color: rgb(255, 111, 0); 
+     color: white); 
   }
 
 #legend{
