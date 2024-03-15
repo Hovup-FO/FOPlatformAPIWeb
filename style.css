@@ -205,7 +205,9 @@ a:link {
     margin-bottom: 0.8em;
     margin-top: 0.5em;
 }  
-
+#btn-swagger {
+    margin-top: 0.8em;
+}
   h1 {
     font-size: 1.1rem;
     margin-bottom: 2.9em;
