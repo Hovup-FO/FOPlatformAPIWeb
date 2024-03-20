@@ -138,6 +138,26 @@ p {
     color: whitesmoke;
 }
 
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    border: 1px solid rgb(101, 188, 70);
+    border-radius: 5px;
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+
+}
+
+.description p {
+    padding: 1rem 1.5rem;
+    width: auto;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
 #home{
     margin-top: 1em;
     font-size: 1.5rem;
@@ -245,6 +265,11 @@ p {
 
 #legend{
     margin: 0.5em 0;
+}
+
+.description p {
+    padding: 0.5rem 1rem;
+    width: 16rem;
 }
 
 }
