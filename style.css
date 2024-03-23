@@ -75,6 +75,7 @@ h3 {
     font-size: 1.2rem;
     text-align: center;
     color: whitesmoke;
+    margin-bottom: 2.4em;
 }
 
 #btn-swagger {
@@ -243,6 +244,7 @@ h2 {
 h3 {
     margin-top: 2em;
     font-size: 0.9rem;
+    margin-bottom: 0;
 }  
 
 p {
