@@ -164,6 +164,7 @@ p {
     font-size: 1.5rem;
 }
 
+.actions p:hover,
 #home:hover,
 #book:hover,
 #zoom:hover,
