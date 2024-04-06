@@ -78,7 +78,7 @@ h3 {
     margin-bottom: 2.4em;
 }
 
-#btn-swagger {
+#btn-swagger, #btn-swagger-set {
         padding: 0.5em 1.875em;
         width: 16rem;
         margin: 1em 0.625em;
@@ -90,6 +90,14 @@ h3 {
         border-radius: 8px;
         cursor: pointer;
         background:  rgb(101, 188, 70);
+}
+
+#btn-swagger {
+    background:  rgb(101, 188, 70);
+}
+
+#btn-swagger-set {
+    background:  rgb(219, 172, 52);
 }
 
 #btn-swagger:hover {
