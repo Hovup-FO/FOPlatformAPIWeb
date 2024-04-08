@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(user => {
         userDataElement.innerHTML = `
             <p>User ID ${userId}</p>
-            <p>Access Token: ${accessToken}</p>
+            <p>Access Token (use it to unlock swagger): ${accessToken}</p>
             <p>Name: ${user.name}</p>
             <p>Email: ${user.email}</p>
             <p>Mobile: ${user.mobile}</p>
