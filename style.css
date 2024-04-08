@@ -22,7 +22,7 @@ main {
     border-radius: 5px; 
 } 
  
-#img-tkm {
+#img-fo {
 
     width: 12em;
     height: 12em;
@@ -30,7 +30,7 @@ main {
     margin-top: 0.8em;
 }  
 
-#img-tkm-examples{
+#img-fo-examples{
     width: 5em;
     height: 5em;
 }
@@ -216,7 +216,7 @@ a:link {
 
 #legend{
     display: flex;
-    gap: 0.2em;
+    gap: 0.4em;
 }
 
 @media (max-width: 800px) {
@@ -241,6 +241,11 @@ a:link {
 }  
 #btn-swagger {
     margin-top: 0.4em;
+}
+
+#proximamente{
+    display: flex;
+    flex-direction: column;
 }
   h1 {
     font-size: 1.1rem;

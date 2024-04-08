@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FO Platform Master User Registration</title>
+    <link rel="stylesheet" href="styleCP.css">
+</head>
+<body>
+    <img id="img-fo" src="/images/FOLogo.png">
+    <div class="form-container">
+        <h2>Create a Master User</h2>
+        <p>Obtain the User ID and Token that you will need to unlock all of FO Platform´s API capabilites in Swagger</p>
+        <form id="userForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="name" placeholder="First Name" required>
+            <input type="text" id="mobile" placeholder="Mobile" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+            <div id="showP"><input type="checkbox" id="showPassword"> <p>Show password</p></div>
+            <input type="hidden" id="lang" value="es">
+            <button type="submit">Create Master User</button>
+        </form>
+    </div>
+    <script src="scriptCP.js"></script>
+</body>
+</html>
