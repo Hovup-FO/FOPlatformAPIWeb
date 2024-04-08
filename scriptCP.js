@@ -5,7 +5,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     const confirmPassword = document.getElementById('confirmPassword').value;
 
     if (password !== confirmPassword) {
-        alert('The passwords doesn´t match.');
+        alert('The passwords don´t match.');
         return;
     }
 
@@ -22,7 +22,6 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         headers: {
             'Content-Type': 'application/json',
             'accept': 'application/json',
-            // Aquí deberás agregar la cabecera de autorización si es necesaria
         },
         body: JSON.stringify(userData)
     })
@@ -32,8 +31,9 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         return validateUser(data.id);
     })
     .then(data => {
-        alert('The User has been created and validated succesfully.');
-        downloadUserInfo(data.userId, data.accessToken);
+        console.log('The User has been created and validated successfully.');
+        localStorage.setItem('userId', data.userId); // Guarda el userId en el almacenamiento local
+        window.location.href = 'login.html?success=true'; // Redirige al usuario a la página de login con parámetro de éxito
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -52,38 +52,33 @@ function validateUser(userId) {
         headers: {
             'Content-Type': 'application/json',
             'accept': 'application/json',
-            // Aquí deberás agregar la cabecera de autorización si es necesaria
         },
         body: JSON.stringify(validationData)
     })
     .then(response => response.json())
     .then(data => {
         console.log('User validated:', data);
-        return { userId, accessToken: data.access_token };
+        return { userId: userId, accessToken: data.access_token };
     });
 }
 
-function downloadUserInfo(userId, accessToken) {
-    const element = document.createElement('a');
-    const fileContent = `User ID: ${userId}\nAccess Token: ${accessToken}`;
-    const file = new Blob([fileContent], { type: 'text/plain' });
-    element.href = URL.createObjectURL(file);
-    element.download = "FOCredentials.txt";
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+if (document.getElementById('showPassword')) {
+    document.getElementById('showPassword').addEventListener('change', function(event) {
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        if (this.checked) {
+            passwordInput.type = 'text';
+            confirmPasswordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+            confirmPasswordInput.type = 'password';
+        }
+    });
 }
 
-document.getElementById('showPassword').addEventListener('change', function(event) {
-    const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('confirmPassword');
-    if (this.checked) {
-        passwordInput.type = 'text';
-        confirmPasswordInput.type = 'text';
-    } else {
-        passwordInput.type = 'password';
-        confirmPasswordInput.type = 'password';
-    }
-});
+
+
+
+
 
 
