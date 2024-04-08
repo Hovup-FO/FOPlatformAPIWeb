@@ -27,6 +27,10 @@ body {
     max-width: 300px; /* Maximum width */
 }
 
+.cards{
+    display: flex;
+    gap: 2em;
+}
 .cp-container {
     display: flex;
     flex-direction: column;
