@@ -121,11 +121,11 @@ h3 {
     background:  rgb(219, 172, 52);
 }
 
-#btn-swagger:hover, #btn-swagger-set:hover, #btn-login:hover {
+#btn-swagger:hover, #btn-swagger-set:hover {
     background: rgb(255, 111, 0);
 }
 
-#btn-swagger-set:hover {
+#btn-swagger-set:hover, #btn-login:hover   {
     background:  rgb(101, 188, 70);
 }
 
