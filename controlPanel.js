@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(user => {
         userDataElement.innerHTML = `
-            <p>User ID ${userId}</p>
+            <p>User ID: ${userId}</p>
             <p>Access Token (use it to unlock swagger): ${accessToken}</p>
             <p>Name: ${user.name}</p>
             <p>Email: ${user.email}</p>
