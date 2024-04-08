@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Panel</title>
+    <link rel="stylesheet" href="/Styles/styleCP.css">
+</head>
+<body>
+    <img id="img-fo" src="/images/FOLogo.png">
+    <div class="cards">
+    <div class="cp-container">
+    <h2>Your Master User Info</h2>
+        <div id="userData">
+        <!-- Los datos del usuario se mostrarán aquí -->
+        </div>
+        <div>
+            <button id="logoutButton">Log out</button>
+        </div>
+    </div>
+    <div class="cp-container">
+        <h2>Your Segments</h2>
+            <div id="segments">
+            <!-- Los datos del segmento se mostrarán aquí -->
+            </div> 
+            <div>
+            <a href="/Pages/createSegment.html"><button id="createSegmentButton">Create a Segment</button></a> 
+             </div>
+        </div>
+    </div>
+    <script src="/Scripts/controlPanel.js"></script>
+</body>
+</html>

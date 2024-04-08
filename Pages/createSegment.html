@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FO Platform Segment Creation</title>
+    <link rel="stylesheet" href="/Styles/styleCP.css">
+</head>
+<body>
+    <a href="/Pages/index.html"><img id="img-fo" src="/images/FOLogo.png"></a>
+    <div class="form-container">
+        <h2>Create a Segment</h2>
+        <p>Create the Segment or the Database to implement your project</p>
+        <form id="segmentForm">
+        <input type="text" id="segmentName" placeholder="Segment Name" required>
+        <input type="hidden" id="userId" value="">
+        <input type="hidden" id="managedBy" value="">
+        <input type="hidden" id="status" value="true">
+        <input type="hidden" id="role" value="Supervisor">
+        <button type="submit">Create a New Segment</button>
+        </form>
+    </div>
+    <script src="/Scripts/createSegment.js"></script>
+</body>
+</html>
