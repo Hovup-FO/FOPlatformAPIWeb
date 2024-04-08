@@ -94,6 +94,15 @@ button {
     cursor: pointer;
 }
 
+
+#deleteSegmentButton{
+    background-color: red;
+}
+
+#deleteSegmentButton:hover, #createSegmentButton:hover {
+    background-color: black;
+}
+
 button:hover {
     background-color: rgb(255, 111, 0);
 }

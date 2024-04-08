@@ -3,6 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Control Panel</title>
+    <meta name="description" content="The best API engine to develop your projects" />
+        <meta property="og:title" content="FO Platform" />
+        <meta property="og:url" content="https://foplatform.com" />
+        <meta property="og:description" content="The best API engine to develop your projects" />
+        <meta property="og:image" content="/images/FOLogo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">      
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/bef8a819f6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/Styles/styleCP.css">
 </head>
 <body>
@@ -17,15 +31,20 @@
             <button id="logoutButton">Log out</button>
         </div>
     </div>
+    <div class="cards">
     <div class="cp-container">
         <h2>Your Segments</h2>
             <div id="segments">
             <!-- Los datos del segmento se mostrarán aquí -->
             </div> 
             <div>
-            <a href="/Pages/createSegment.html"><button id="createSegmentButton">Create a Segment</button></a> 
+                <a href="/Pages/createSegment.html"><button id="createSegmentButton">Create a Segment</button></a> 
              </div>
+             <div>
+                <a href="/Pages/deleteSegment.html"><button id="deleteSegmentButton">Delete a Segment</button></a>
+            </div>  
         </div>
+     </div>
     </div>
     <script src="/Scripts/controlPanel.js"></script>
 </body>

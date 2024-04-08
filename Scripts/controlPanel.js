@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch(`https://sandbox-api.foplatform.com/user/${userId}`, {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${accessToken}`
+            'Authorization': `Bearer ${accessToken}`,
         }
     })
     .then(response => response.json())
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
     method: 'GET',
     headers: {
-        'Authorization': `Bearer ${accessToken}`
+        'Authorization': `Bearer ${accessToken}`,
     }
 })
 .then(response => {
