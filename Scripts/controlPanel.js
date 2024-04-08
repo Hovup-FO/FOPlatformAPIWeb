@@ -49,6 +49,7 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
     segmentsElement.innerHTML = `<h3>Databases: (${segments.length})</h3>`;
     segments.forEach(segment => {
         segmentsElement.innerHTML += `<p>Segment Name: ${segment.name}</p>`;
+        segmentsElement.innerHTML += `<p>Segment ID: ${segment.id}</p>`;
     });
 })
 .catch(error => {

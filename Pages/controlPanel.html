@@ -45,7 +45,27 @@
             </div>  
         </div>
      </div>
+     <div class="cards">
+        <div class="cp-container">
+            <h2>Your Memberships</h2>
+            <select id="segmentSelect">
+                <!-- Las opciones se llenarán dinámicamente desde viewMembershipLevels.js -->
+            </select>
+                <div id="memberships">
+                <!-- Los datos de la membresúa por segmento se mostrarán aquí -->
+                </div> 
+                <div>
+                    <a href="/Pages/createMembership.html"><button id="createSegmentButton">Create a Membership</button></a> 
+                 </div>
+                  <!-- Los datos de la membresúa por segmento se mostrarán aquí
+                 <div>
+                    <a href="/Pages/deleteMembership.html"><button id="deleteSegmentButton">Delete a Membership</button></a>
+                </div> 
+                 --> 
+            </div>
+         </div>
     </div>
     <script src="/Scripts/controlPanel.js"></script>
+    <script src="/Scripts/viewMembershipLevels.js"></script>
 </body>
 </html>

@@ -61,7 +61,7 @@ form {
     flex-direction: column;
 }
 
-input {
+input, select {
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
@@ -69,6 +69,12 @@ input {
 }
 
 input[type="checkbox"] {
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: left;
+}
+
+select {
     margin-bottom: 10px;
     cursor: pointer;
     text-align: left;
@@ -99,7 +105,15 @@ button {
     background-color: red;
 }
 
-#deleteSegmentButton:hover, #createSegmentButton:hover {
+#addLevelButton{
+    background-color: blue;
+    margin-bottom: 0.2em;
+}
+
+#deleteSegmentButton:hover, 
+#createSegmentButton:hover, 
+#addLevelButton:hover,
+#createMembershipButton:hover {
     background-color: black;
 }
 
