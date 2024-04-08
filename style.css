@@ -103,7 +103,6 @@ h3 {
         color: white;
         border-radius: 8px;
         cursor: pointer;
-        background:  rgb(101, 188, 70);
 }
 
 #btn-login {
@@ -118,7 +117,7 @@ h3 {
     background:  rgb(101, 188, 70);
 }
 
-#btn-swagger-set {
+#btn-swagger-set, #btn-login {
     background:  rgb(219, 172, 52);
 }
 
