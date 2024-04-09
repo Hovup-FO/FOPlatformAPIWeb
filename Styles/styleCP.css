@@ -112,7 +112,7 @@ button {
 }
 
 
-#deleteSegmentButton{
+.deleteButton{
     background-color: red;
 }
 
@@ -121,7 +121,7 @@ button {
     margin-bottom: 0.2em;
 }
 
-#deleteSegmentButton:hover, 
+.deleteButton:hover, 
 #createSegmentButton:hover, 
 #addLevelButton:hover,
 #createMembershipButton:hover {

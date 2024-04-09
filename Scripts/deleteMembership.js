@@ -1,0 +1,39 @@
+document.addEventListener('DOMContentLoaded', function() {
+    loadMemberships('membershipSelect');
+    
+    document.getElementById('deleteMembershipButton').addEventListener('click', function() {
+        const selectedMembershipId = document.getElementById('membershipSelect').value;
+        deleteMembership(selectedMembershipId);
+    });
+});
+
+function deleteMembership(membershipId) {
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (!membershipId) {
+        alert('Please select a membership to delete.');
+        return;
+    }
+
+    fetch(`https://sandbox-api.foplatform.com/membership/${membershipId}`, {
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            alert('Membership deleted successfully');
+            window.location.href = '/../Pages/controlPanel.html'; // Actualiza con la ruta correcta
+        } else {
+            alert('Error deleting membership');
+            console.error('Failed to delete the membership:', response);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error deleting membership');
+    });
+}
+
+
