@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const accessToken = localStorage.getItem('accessToken');  // Asegúrate de que el token de acceso está correctamente obtenido y almacenado
-    const userId = localStorage.getItem('userId');  // Asegúrate de que el userId está correctamente obtenido y almacenado
-    const segmentSelect = document.getElementById('segmentSelect');
-    const membershipsContainer = document.getElementById('memberships');
+    const accessToken = localStorage.getItem('accessToken');
+    const userId = localStorage.getItem('userId');
+
+    const membershipSelect = document.getElementById('membershipSelect');
+    const membershipLevelsContainer = document.getElementById('membershipLevels');
 
     if (!userId || !accessToken) {
         console.error('No userId or accessToken found');
-        return;  // Detener la ejecución si no se encuentra userId o accessToken
+        return;
     }
 
-    // Función para cargar y mostrar los segmentos
     function loadSegments() {
         fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
             method: 'GET',
@@ -19,58 +19,84 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(segments => {
-            segmentSelect.innerHTML = '';  // Limpiar el select antes de añadir nuevos segmentos
+            segmentSelect.innerHTML = '';
             segments.forEach(segment => {
                 const option = document.createElement('option');
                 option.value = segment.id;
                 option.textContent = segment.name;
                 segmentSelect.appendChild(option);
             });
+
+            // Automatically load memberships for the first segment
+            if (segments.length > 0) {
+                loadMemberships(segments[0].id);
+            }
         })
         .catch(error => console.error('Error loading segments:', error));
     }
 
-    // Función para cargar y mostrar las membresías de un segmento específico
     function loadMemberships(segmentId) {
-        membershipsContainer.innerHTML = '';  // Limpiar contenedor antes de añadir nuevos datos
-
-        fetch(`https://sandbox-api.foplatform.com/membership/list/${segmentId}`, {
+        fetch(`https://sandbox-api.foplatform.com/membership/list/${segmentId}?page=1&no_items=10`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(memberships => {
-            if (memberships && memberships.length > 0) {
-                memberships.forEach(membership => {
-                    const membershipDiv = document.createElement('div');
-                    membershipDiv.textContent = `Membership Name: ${membership.name}`;
-                    membershipDiv.textContent = `Membership ID: ${membership.id}`;
-                    membershipsContainer.appendChild(membershipDiv);
+            membershipSelect.innerHTML = '';
+            memberships.forEach(membership => {
+                const option = document.createElement('option');
+                option.value = membership.id;
+                option.textContent = membership.name;
+                membershipSelect.appendChild(option);
+            });
 
-                    // Aquí podría ir una llamada adicional para cargar y mostrar los niveles de esta membresía
-                });
-            } else {
-                membershipsContainer.innerHTML = '<p>No memberships found for this segment.</p>';
+            // Automatically load levels for the first membership
+            if (memberships.length > 0) {
+                loadMembershipLevels(memberships[0].id);
             }
         })
-        .catch(error => {
-            console.error('Error loading memberships:', error);
-        });
+        .catch(error => console.error('Error loading memberships:', error));
     }
 
-    // Manejador de eventos para cuando se selecciona un nuevo segmento
+    function loadMembershipLevels(membershipId) {
+        if (!membershipId) {
+            console.warn('No membershipId provided');
+            return;
+        }
+    
+        fetch(`https://sandbox-api.foplatform.com/membership-level/list/${membershipId}?page=1&no_items=10`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(levels => {
+            membershipLevelsContainer.innerHTML = `<h3>Membership Levels: (${levels.length})</h3>`;
+            if (levels && levels.length > 0) {
+                levels.forEach(level => {
+                    membershipLevelsContainer.innerHTML += `<div><h4>Level Name: ${level.name}</h4><p>Level ID: ${level.id}</p></div>`;
+                });
+            } else {
+                membershipLevelsContainer.innerHTML += '<p>No levels found for this membership.</p>';
+            }
+        })
+        .catch(error => console.error('Error loading membership levels:', error));
+    }
+    
+    // Asegúrate de que este evento se dispara correctamente
+    membershipSelect.addEventListener('change', function() {
+        const selectedMembershipId = membershipSelect.value;
+        loadMembershipLevels(selectedMembershipId);
+    });
+    
+    
+
     segmentSelect.addEventListener('change', () => {
-        const selectedSegmentId = segmentSelect.value;
-        loadMemberships(selectedSegmentId);
+        loadMemberships(segmentSelect.value);
     });
 
-    // Cargar los segmentos inicialmente
     loadSegments();
 });

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         userDataElement.innerHTML = `
             <p>User ID: ${userId}</p>
             <p>Access Token (use it to unlock swagger): ${accessToken}</p>
-            <p>Name: ${user.name}</p>
+            <h4>Project Name: ${user.name}</h4>
             <p>Email: ${user.email}</p>
             <p>Mobile: ${user.mobile}</p>
         `;
@@ -48,7 +48,7 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
     console.log(segments); // Agrega esta línea para depurar
     segmentsElement.innerHTML = `<h3>Databases: (${segments.length})</h3>`;
     segments.forEach(segment => {
-        segmentsElement.innerHTML += `<p>Segment Name: ${segment.name}</p>`;
+        segmentsElement.innerHTML += `<h4>Segment Name: ${segment.name}</h4>`;
         segmentsElement.innerHTML += `<p>Segment ID: ${segment.id}</p>`;
     });
 })

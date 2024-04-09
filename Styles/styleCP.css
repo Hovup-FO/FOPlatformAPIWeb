@@ -7,7 +7,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: auto;
 }
 
 
@@ -29,8 +29,15 @@ body {
 
 .cards{
     display: flex;
+    flex-direction: column;
     gap: 2em;
 }
+
+.twosome{
+    display: flex;
+    gap: 2em;
+}
+
 .cp-container {
     display: flex;
     flex-direction: column;
@@ -45,6 +52,10 @@ body {
 h2{
     margin: 0;
     padding: 0.3em;
+    text-align: center;
+}
+
+h4{
     text-align: center;
 }
 
@@ -117,9 +128,16 @@ button {
     background-color: black;
 }
 
-button:hover {
+button:hover,
+#logoutButton{
     background-color: rgb(255, 111, 0);
 }
+
+#logoutButton:hover {
+    background-color:rgb(101, 188, 70);
+}
+
+
 
 @media (max-width: 768px) {
     .form-container {

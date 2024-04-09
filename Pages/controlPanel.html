@@ -21,7 +21,10 @@
 </head>
 <body>
     <img id="img-fo" src="/images/FOLogo.png">
+    
     <div class="cards">
+       
+    <div class="twosome" >
     <div class="cp-container">
     <h2>Your Master User Info</h2>
         <div id="userData">
@@ -31,9 +34,9 @@
             <button id="logoutButton">Log out</button>
         </div>
     </div>
-    <div class="cards">
+    
     <div class="cp-container">
-        <h2>Your Segments</h2>
+        <h2>Your Segments in FO</h2>
             <div id="segments">
             <!-- Los datos del segmento se mostrarán aquí -->
             </div> 
@@ -44,10 +47,11 @@
                 <a href="/Pages/deleteSegment.html"><button id="deleteSegmentButton">Delete a Segment</button></a>
             </div>  
         </div>
-     </div>
-     <div class="cards">
+    </div>
+     <div class="twosome">
+    
         <div class="cp-container">
-            <h2>Your Memberships</h2>
+            <h2>Your Memberships per Segment</h2>
             <select id="segmentSelect">
                 <!-- Las opciones se llenarán dinámicamente desde viewMembershipLevels.js -->
             </select>
@@ -63,9 +67,69 @@
                 </div> 
                  --> 
             </div>
-         </div>
-    </div>
+        
+        
+
+            <div class="cp-container">
+                <h2>Your Levels per Membership</h2>
+                <select id="membershipSelect">
+                    <!-- Las opciones se llenarán dinámicamente desde viewMembershipLevels.js -->
+                </select>
+                    <div id="membershipLevels">
+                    <!-- Los datos de la membresúa por segmento se mostrarán aquí -->
+                    </div> 
+                    <!--
+                    <div>
+                        <a href="/Pages/createMembership.html"><button id="createSegmentButton">Create a Membership</button></a> 
+                     </div>
+                    Los datos de la membresúa por segmento se mostrarán aquí
+                     <div>
+                        <a href="/Pages/deleteMembership.html"><button id="deleteSegmentButton">Delete a Membership</button></a>
+                    </div> 
+                     --> 
+                </div>
+            </div>
+            <div class="twosome">
+    
+                <div class="cp-container">
+                    <h2>Your Membership Level Custom Fields</h2>
+                    <select id="membershipLevelSelect">
+                        <!-- Las opciones se llenarán dinámicamente desde viewMembershipLevels.js -->
+                    </select>
+                        <div id="customFields">
+                        <!-- Los datos de la membresúa por segmento se mostrarán aquí -->
+                        </div> 
+                        <div>
+                            <a href="/Pages/createCustomField.html"><button id="createCustomFieldButton">Create a Custom Field</button></a> 
+                         </div>
+                          <!-- Los datos de la membresúa por segmento se mostrarán aquí
+                         <div>
+                            <a href="/Pages/deleteMembership.html"><button id="deleteSegmentButton">Delete a Membership</button></a>
+                        </div> 
+                         --> 
+                    </div>
+                
+                
+        
+                    <div class="cp-container">
+                        <h2>Your Membership Users per Membership Level</h2>
+                            <div id="membershipUsers">
+                            <!-- Los datos de la membresúa por segmento se mostrarán aquí -->
+                            </div> 
+                            <!--
+                            <div>
+                                <a href="/Pages/createMembership.html"><button id="createSegmentButton">Create a Membership</button></a> 
+                             </div>
+                            Los datos de la membresúa por segmento se mostrarán aquí
+                             <div>
+                                <a href="/Pages/deleteMembership.html"><button id="deleteSegmentButton">Delete a Membership</button></a>
+                            </div> 
+                             --> 
+                        </div>
+                    </div>
+        </div>
     <script src="/Scripts/controlPanel.js"></script>
+    <script src="/Scripts/viewMemberships.js"></script>
     <script src="/Scripts/viewMembershipLevels.js"></script>
 </body>
 </html>
