@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId');
-    const segmentSelect = document.getElementById('segmentSelect');
+    const segmentSelect = document.getElementById('segmentSelect2');
 
     // Cargar los segmentos en el select
     fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items=10&removed=false`, {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Manejar la eliminación del segmento
-    document.getElementById('deleteSegmentButton').addEventListener('click', function() {
+    document.getElementById('deleteMembershipLevelButton').addEventListener('click', function() {
         const selectedSegmentId = segmentSelect.value;
         if (!selectedSegmentId) {
             alert('Please select a segment to delete.');
@@ -53,5 +53,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-

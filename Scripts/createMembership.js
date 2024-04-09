@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let levelCounter = 1; // Contador para el número de nivel
 
     // Cargar segmentos
-    fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
+    fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items=10&removed=false`, {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${accessToken}`

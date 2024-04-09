@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para cargar y mostrar los segmentos
     function loadSegments() {
-        fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
+        fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items=10&removed=false`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`

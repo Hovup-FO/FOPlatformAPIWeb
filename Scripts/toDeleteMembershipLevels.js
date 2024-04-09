@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId');
-    const membershipSelect = document.getElementById('membershipSelect');
-    const membershipLevelsContainer = document.getElementById('membershipLevels');
+    const membershipSelect = document.getElementById('membershipSelect2');
+    const membershipLevelsContainer = document.getElementById('membershipLevelSelect2');
 
     if (!userId || !accessToken) {
         console.error('No userId or accessToken found');
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadSegments() {
-        fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items=10&removed=false`, {
+        fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -71,18 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
-        .then(response => response.json())
-        .then(levels => {
-            membershipLevelsContainer.innerHTML = `<h3>Membership Levels: (${levels.length})</h3>`;
-            if (levels && levels.length > 0) {
-                levels.forEach(level => {
-                    membershipLevelsContainer.innerHTML += `<div><h4>Level Name: ${level.name}</h4><p>Level ID: ${level.id}</p></div>`;
-                });
-            } else {
-                membershipLevelsContainer.innerHTML += '<p>No levels found for this membership.</p>';
-            }
-        })
-        .catch(error => console.error('Error loading membership levels:', error));
     }
     
     // Asegúrate de que este evento se dispara correctamente
