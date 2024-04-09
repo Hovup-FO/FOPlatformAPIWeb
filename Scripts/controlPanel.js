@@ -61,6 +61,7 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}`, {
     const logoutButton = document.getElementById('logoutButton');
     if (logoutButton) {
         logoutButton.addEventListener('click', function() {
+            localStorage.clear();
             localStorage.removeItem('accessToken');
             localStorage.removeItem('userId');
             window.location.href = '../index.html'; // Nota el cambio aquí

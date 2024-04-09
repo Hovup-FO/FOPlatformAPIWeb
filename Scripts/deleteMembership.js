@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    loadMemberships('membershipSelect');
-    
+    // Elimina cualquier llamada directa a loadMemberships aquí
+    // Por ejemplo, quita algo como loadMemberships('membershipSelect1');
+
     document.getElementById('deleteMembershipButton').addEventListener('click', function() {
-        const selectedMembershipId = document.getElementById('membershipSelect').value;
+        const selectedMembershipId = document.getElementById('membershipSelect1').value;
         deleteMembership(selectedMembershipId);
     });
 });
@@ -24,7 +25,7 @@ function deleteMembership(membershipId) {
     .then(response => {
         if (response.ok) {
             alert('Membership deleted successfully');
-            window.location.href = '/../Pages/controlPanel.html'; // Actualiza con la ruta correcta
+            window.location.href = '/../Pages/controlPanel.html'; // Asegúrate de que esta ruta sea correcta
         } else {
             alert('Error deleting membership');
             console.error('Failed to delete the membership:', response);
@@ -35,5 +36,8 @@ function deleteMembership(membershipId) {
         alert('Error deleting membership');
     });
 }
+
+
+
 
 
