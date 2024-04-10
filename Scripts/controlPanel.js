@@ -65,7 +65,7 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
  membershipSelect.addEventListener('change', function() {
     const membershipId = this.value;
     if (membershipId) {
-        fetch(`https://sandbox-api.foplatform.com/membership-custom-field/list/${membershipId}?page=1&no_items=10`, {
+        fetch(`https://sandbox-api.foplatform.com/membership-custom-field/list/${membershipId}?page=1&no_items=50`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
@@ -84,6 +84,32 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
         })
         .catch(error => {
             console.error('Error fetching Custom Fields:', error);
+        });
+    }
+});
+
+ // Mostrar Users
+ membershipSelect.addEventListener('change', function() {
+    const membershipId = this.value;
+    if (membershipId) {
+        fetch(`https://sandbox-api.foplatform.com/membership-user/list/${membershipId}?page=1&no_items=100`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        })
+        .then(response => response.json())
+        .then(membershipUsers => {
+            const membershipUsersElement = document.getElementById('membershipUsers');
+            membershipUsersElement.innerHTML = `<h3>Membership Users: (${membershipUsers.length})</h3>`;
+            membershipUsers.forEach(membershipUser => {
+                membershipUsersElement.innerHTML += `<h4>Membership User Name: ${membershipUser.name}</h4>`;
+                membershipUsersElement.innerHTML += `<p>Custom Field ID: ${membershipUser.id}</p>`;
+        
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching Membership Users:', error);
         });
     }
 });
