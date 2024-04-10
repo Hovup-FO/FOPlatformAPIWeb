@@ -49,6 +49,7 @@ body {
 .cards {
     display: flex;
     flex-direction: column;
+    align-content: space-between ;
     gap: 2em;
 }
 
@@ -61,7 +62,8 @@ body {
 .cp-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:space-between;
+    align-content:space-around ;
     align-items: center;
     gap: 0.5em;
 }

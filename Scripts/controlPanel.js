@@ -61,6 +61,7 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
 });
 
 
+
  // Mostrar Custom Fields
  membershipSelect.addEventListener('change', function() {
     const membershipId = this.value;
