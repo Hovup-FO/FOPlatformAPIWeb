@@ -18,7 +18,7 @@ body {
     margin-top: 0.1em;
 }  
 
-.form-container, .login-container, .cp-container {
+.form-container, .form-container1, .login-container, .cp-container {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
@@ -27,15 +27,35 @@ body {
     max-width: 300px; /* Maximum width */
 }
 
-.cards{
+.form-container1  {
+    max-width: 600px; /* Maximum width */
+}
+
+.form-container1 p {
+    margin: 0;
+    padding: 0.5em;
+    width: 45em;
+    text-align: center;
+    font-size: 0.8rem;
+    gap: 0.1em;
+}
+
+.twosome  {
+    display: flex;
+    gap: 2em;
+}
+
+
+.cards {
     display: flex;
     flex-direction: column;
     gap: 2em;
 }
 
-.twosome{
+#customFieldContainer{
     display: flex;
-    gap: 2em;
+    flex-direction: column;
+    gap: 0.2em;
 }
 
 .cp-container {
@@ -79,11 +99,42 @@ input, select {
     border: 1px solid #ddd;
 }
 
+input[type="text"] {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    height: 10em;
+}
+
 input[type="checkbox"] {
     margin-bottom: 10px;
     cursor: pointer;
     text-align: left;
 }
+
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente el checkbox y el label */
+    gap: 8px; /* Añade espacio entre el checkbox y el label */
+}
+
+/* Opcional: Añade estilos adicionales para el label o el checkbox si es necesario */
+.checkbox-container label {
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    cursor: pointer;
+}
+
 
 select {
     margin-bottom: 10px;

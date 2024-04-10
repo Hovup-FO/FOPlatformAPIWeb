@@ -3,12 +3,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('userId');  // Asegúrate de que el userId está correctamente obtenido y almacenado
     const segmentSelect = document.getElementById('segmentSelect');
     const membershipsContainer = document.getElementById('memberships');
+   
 
     if (!userId || !accessToken) {
         console.error('No userId or accessToken found');
         return;  // Detener la ejecución si no se encuentra userId o accessToken
     }
 
+    // Cargar los segmentos inicialmente
+      loadSegments();
+      
     // Función para cargar y mostrar los segmentos
     function loadSegments() {
         fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items=10&removed=false`, {
@@ -35,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 option.textContent = segment.name;
                 segmentSelect.appendChild(option);
             });
-    
+            
+            segmentSelect.dispatchEvent(new Event('change'));
             // Agrega esta línea si quieres disparar el evento change automáticamente para el primer segmento
             // segmentSelect.dispatchEvent(new Event('change'));
         })
@@ -80,6 +85,5 @@ document.addEventListener('DOMContentLoaded', function() {
         loadMemberships(selectedSegmentId);
     });
 
-    // Cargar los segmentos inicialmente
-    loadSegments();
+  
 });

@@ -9,30 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    function loadSegments() {
-        fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items=10&removed=false`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
-        .then(response => response.json())
-        .then(segments => {
-            segmentSelect.innerHTML = '';
-            segments.forEach(segment => {
-                const option = document.createElement('option');
-                option.value = segment.id;
-                option.textContent = segment.name;
-                segmentSelect.appendChild(option);
-            });
-
-            // Automatically load memberships for the first segment
-            if (segments.length > 0) {
-                loadMemberships(segments[0].id);
-            }
-        })
-        .catch(error => console.error('Error loading segments:', error));
-    }
 
     function loadMemberships(segmentId) {
         fetch(`https://sandbox-api.foplatform.com/membership/list/${segmentId}?page=1&no_items=10`, {
@@ -97,5 +73,4 @@ document.addEventListener('DOMContentLoaded', function() {
         loadMemberships(segmentSelect.value);
     });
 
-    loadSegments();
 });

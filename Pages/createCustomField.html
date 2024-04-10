@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Custom Field in FO</title>
+    <meta property="og:title" content="FO Platform" />
+    <meta property="og:url" content="https://foplatform.com" />
+    <meta property="og:description" content="The best API engine to develop your projects" />
+    <meta property="og:image" content="/images/FOLogo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">      
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bef8a819f6.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/Styles/styleCP.css">
+</head>
+<body>
+    <a href="../index.html"><img id="img-fo" src="/images/FOLogo.png"></a>
+    <div class="form-container1">
+        <h2>Create a Custom Field in a Membership Level</h2>
+        <p>Create a Custom Field that you may need for you project´s user onboarding needs.  Try to avoid the following fields that come predefined in FO Platforms Membership User Enpoint: name, lastname, gender, birthdate, country, state, city, status, origin, card_number, validate, latitude, longitude, origin_membership, refer_to </p>
+        <form id="membershipFieldForm">
+            <select id="segmentSelect3" placeholder="Select Segment" required>
+                <!-- Opciones de segmento se añadirán dinámicamente -->
+            </select>
+            <select id="membershipSelect3" placeholder="Select Membership" required>
+                <!-- Opciones de membresía se añadirán dinámicamente -->
+            </select>
+            <div id="customFieldContainer">
+                <!-- Se mostrarán los campos para crear Custom Fields -->
+            </div>
+            <button type="submit" id="createCustomFieldButton">Create Custom Field</button>
+        </form>
+    </div>
+    <script src="/Scripts/createCustomField.js"></script>
+</body>
+</html>

@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('userId');
     const userDataElement = document.getElementById('userData');
     const segmentsElement = document.getElementById('segments');
+    const membershipSelect = document.getElementById('membershipSelect');
+   
+
 
     if (!accessToken || !userId) {
         window.location.href = 'login.html';
@@ -54,6 +57,33 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
 })
 .catch(error => {
     console.error('Error fetching segments:', error);
+});
+
+ // Mostrar Custom Fields
+ membershipSelect.addEventListener('change', function() {
+    const membershipId = this.value;
+    if (membershipId) {
+        fetch(`https://sandbox-api.foplatform.com/membership-custom-field/list/${membershipId}?page=1&no_items=10`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+            }
+        })
+        .then(response => response.json())
+        .then(customFields => {
+            const customFieldsElement = document.getElementById('customFields');
+            customFieldsElement.innerHTML = `<h3>Custom Fields: (${customFields.length})</h3>`;
+            customFields.forEach(customField => {
+                customFieldsElement.innerHTML += `<h4>Custom Field Name: ${customField.name}</h4>`;
+                customFieldsElement.innerHTML += `<p>Custom Field ID: ${customField.id}</p>`;
+                customFieldsElement.innerHTML += `<p>Custom Field Type: ${customField.type}</p>`;
+                customFieldsElement.innerHTML += `<p>Custom Field Position: ${customField.position}</p>`;
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching Custom Fields:', error);
+        });
+    }
 });
 
 
