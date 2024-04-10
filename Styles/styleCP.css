@@ -53,10 +53,18 @@ body {
     gap: 2em;
 }
 
-#customFieldContainer{
+#customFieldContainer, .editContainers {
     display: flex;
     flex-direction: column;
     gap: 0.2em;
+}
+
+.editContainers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    align-items: start;
+    align-content: space-around;
 }
 
 .cp-container {
@@ -162,10 +170,11 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-bottom: 0.5em;
 }
 
 
-.deleteButton{
+.deleteButton, .rudButton:hover{
     background-color: red;
 }
 
@@ -175,6 +184,8 @@ button {
 }
 
 .editButton:hover,
+.deleteButton:hover,
+.rudButton,
 .deleteButton:hover, 
 #createSegmentButton:hover, 
 #addLevelButton:hover,

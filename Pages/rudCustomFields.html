@@ -21,21 +21,25 @@
 <body>
     <a href="../index.html"><img id="img-fo" src="/images/FOLogo.png"></a>
     <div class="form-container1">
-        <h2>Edit a Custom Field in a Membership</h2>
-        <p>Create a Custom Field that you may need for you project´s user onboarding needs.  Try to avoid the following fields that come predefined in FO Platforms Membership User Enpoint: name, lastname, gender, birthdate, country, state, city, status, origin, card_number, validate, latitude, longitude, origin_membership, refer_to </p>
+        <h2>RUD a Custom Field in a Membership</h2>
+        <p>Here you can read, update or delete the parameters that a custom field has when you created it. </p>
         <form id="membershipFieldForm">
-            <select id="segmentSelect3" placeholder="Select Segment" required>
+            <select id="segmentSelect4" placeholder="Select Segment" required>
                 <!-- Opciones de segmento se añadirán dinámicamente -->
             </select>
-            <select id="membershipSelect3" placeholder="Select Membership" required>
+            <select id="membershipSelect4" placeholder="Select Membership" required>
                 <!-- Opciones de membresía se añadirán dinámicamente -->
             </select>
-            <div id="customFieldContainer">
+            <select id="customFieldSelect4" placeholder="Select Custom Field" required>
+                <!-- Opciones de membresía se añadirán dinámicamente -->
+            </select>
+            <div class="editContainers" id="customFieldEditContainer">
                 <!-- Se mostrarán los campos para crear Custom Fields -->
             </div>
-            <button type="submit" id="createCustomFieldButton">Create Custom Field</button>
+            <button class="editButton" type="submit" id="editCustomFieldButton">Edit Custom Field</button>
+            <button class="deleteButton" type="submit" id="deleteCustomFieldButton">Delete Custom Field</button>
         </form>
     </div>
-    <script src="/Scripts/createCustomField.js"></script>
+    <script src="/Scripts/rudCustomFields.js"></script>
 </body>
 </html>
