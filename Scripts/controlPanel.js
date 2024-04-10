@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('userId');
     const userDataElement = document.getElementById('userData');
     const segmentsElement = document.getElementById('segments');
+    const segmentsSelect = document.getElementById('segmentsSelect');
     const membershipSelect = document.getElementById('membershipSelect');
    
 
@@ -58,6 +59,7 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
 .catch(error => {
     console.error('Error fetching segments:', error);
 });
+
 
  // Mostrar Custom Fields
  membershipSelect.addEventListener('change', function() {

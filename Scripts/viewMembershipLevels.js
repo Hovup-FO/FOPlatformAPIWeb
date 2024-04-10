@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(memberships => {
             membershipSelect.innerHTML = '';
+            membershipSelect.innerHTML = '<option value="">Select a Membership</option>';
             memberships.forEach(membership => {
                 const option = document.createElement('option');
                 option.value = membership.id;
@@ -66,7 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedMembershipId = membershipSelect.value;
         loadMembershipLevels(selectedMembershipId);
     });
-    
     
 
     segmentSelect.addEventListener('change', () => {
