@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('accessToken');    
     const userId = localStorage.getItem('userId');
     const segmentSelect = document.getElementById('segmentSelect3');
     const membershipSelect = document.getElementById('membershipSelect3');
@@ -190,13 +190,10 @@ customFieldContainer.appendChild(renderContainer);
     
     }
     
-    // Llamar a createCustomFieldForm al final de 'DOMContentLoaded'
-    document.addEventListener('DOMContentLoaded', function() {
-        // Tus funciones de carga previas...
-        createCustomFieldForm();
-    });
+    createCustomFieldForm();
+  
 
-    document.getElementById('createCustomFieldButton').addEventListener('click', function(event) {
+    document.getElementById('createCustomFieldButton').addEventListener('submit', function(event) {
         event.preventDefault();  // Prevenir la recarga de la página por el submit del formulario
         const name = document.querySelector('[name="name"]').value;
         const type = document.querySelector('[name="type"]').value;
@@ -226,8 +223,6 @@ function createCustomField(data) {
     console.log('Sending data to API:', data); // Para depuración
     const accessToken = localStorage.getItem('accessToken');
 
-    console.log('Sending data to API:', data); // Para depuración, verifica la estructura de 'data'
-
      // Agrega la lógica para manejar 'options' si el tipo es 'dropdown' o 'multiple'
      if (data.type === 'dropdown' || data.type === 'multiple') {
         data.options = []; // Aquí deberías obtener las opciones del formulario
@@ -252,7 +247,7 @@ function createCustomField(data) {
     .then(json => {
         console.log('Success:', json);
         alert('Custom field created successfully');
-        // Aquí puedes redirigir o actualizar la interfaz según sea necesario
+        window.location.href = 'controlPanel.html';
     })
     .catch(error => {
         console.error('Failed to create the custom field:', error);
