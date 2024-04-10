@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const accessToken = localStorage.getItem('accessToken');
     const userId = localStorage.getItem('userId');
-    const membershipSelect = document.getElementById('membershipSelect');
+   
     const membershipLevelsContainer = document.getElementById('membershipLevels');
 
     if (!userId || !accessToken) {
