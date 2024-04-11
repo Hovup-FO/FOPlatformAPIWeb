@@ -283,6 +283,11 @@ button:hover,
         .checkbox-container p {
             font-size: smaller; /* Reduce el tamaño del texto en pantallas pequeñas */
         }
+
+
+.twosome  {
+    flex-direction: column;
+}
     }
 
 
