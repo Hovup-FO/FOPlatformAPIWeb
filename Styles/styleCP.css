@@ -60,7 +60,7 @@ body {
 .form-container1 p {
     margin: 0;
     padding: 0.5em;
-    width: 45em;
+    width: auto;
     text-align: center;
     font-size: 0.8rem;
     gap: 0.1em;
