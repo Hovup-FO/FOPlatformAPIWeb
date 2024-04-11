@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crud a Membership User in FO</title>
+    <meta property="og:title" content="FO Platform" />
+    <meta property="og:url" content="https://foplatform.com" />
+    <meta property="og:description" content="The best API engine to develop your projects" />
+    <meta property="og:image" content="/images/FOLogo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">      
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bef8a819f6.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/Styles/styleCP.css">
+</head>
+<body>
+    <a href="../index.html"><img id="img-fo" src="/images/FOLogo.png"></a>
+    <div class="form-container1">
+        <h2>CRUD a Membership User in a Membership Configuration</h2>
+        <p>Here you can create, read, update or delete a user according to the already establshed parameters of the Membership User Endpoint or/and the Custom Fields that you defined when you created the membership configuration. </p>
+        <form id="membershipFieldForm">
+            <select id="segmentSelect5" placeholder="Select Segment" required>
+                <!-- Opciones de segmento se añadirán dinámicamente -->
+            </select>
+            <select id="membershipSelect5" placeholder="Select Membership" required>
+                <!-- Opciones de membresía se añadirán dinámicamente -->
+            </select>
+            <search>
+                <form method="get" action="/search">
+                  <input type="search" name="search-text" placeholder="Search by email" />
+                  <button>Search</button>
+                </form>
+                 <!-- Se introduce el UUID del Usuario a hacer CRUD -->
+              </search> 
+            
+            <div class="editContainers" id="membershipUserEditContainer">
+                <!-- Se mostrarán los campos para crear Custom Fields -->
+            </div>
+            <button class="createButton" type="submit" id="createMembershipUserButton">Create a Membership User</button>
+            <button class="editButton" type="submit" id="editMembershipUserButton">Edit a Membership User</button>
+            <button class="deleteButton" type="submit" id="deleteMembershipUserButton">Delete a Membership User</button>
+        </form>
+    </div>
+    <script src="/Scripts/crudMembershipUser.js"></script>
+</body>
+</html>

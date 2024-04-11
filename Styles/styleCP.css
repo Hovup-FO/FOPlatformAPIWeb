@@ -185,20 +185,24 @@ button {
 
 .editButton:hover,
 .deleteButton:hover,
-.rudButton,
-.deleteButton:hover, 
-#createSegmentButton:hover, 
-#addLevelButton:hover,
-#createMembershipButton:hover {
+.crudButton:hover,
+.rudButton, 
+#createMembershipButton:hover,
+.createButton:hover {
     background-color: black;
 }
+
+.crudButton{
+    background-color: purple;
+}
+
 
 button:hover,
 #logoutButton{
     background-color: rgb(255, 111, 0);
 }
 
-#logoutButton:hover {
+#logoutButton:hover, .createButton {
     background-color:rgb(101, 188, 70);
 }
 
