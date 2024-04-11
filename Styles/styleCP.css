@@ -128,7 +128,7 @@ body {
 
 #backButton:hover
 {
-    color:whitesmoke;
+    color: rgb(255, 111, 0)
 }
 
 h2{
@@ -206,7 +206,6 @@ input[type="checkbox"] {
 
 .checkbox-container input[type="checkbox"] {
     cursor: pointer;
-    border: 2px solid red;
     width: auto;
 }
 
