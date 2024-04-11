@@ -3,10 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('userId');
     const userDataElement = document.getElementById('userData');
     const segmentsElement = document.getElementById('segments');
-    const segmentsSelect = document.getElementById('segmentsSelect');
+    const segmentSelect = document.getElementById('segmentSelect');
     const membershipSelect = document.getElementById('membershipSelect');
+    const membershipsContainer = document.getElementById('memberships');
+    const membershipLevelsContainer = document.getElementById('membershipLevels');
    
-
 
     if (!accessToken || !userId) {
         window.location.href = 'login.html';
@@ -61,9 +62,106 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
 });
 
 
+loadSegments();
 
- // Mostrar Custom Fields
- membershipSelect.addEventListener('change', function() {
+    segmentSelect.addEventListener('change', function() {
+        loadMemberships(this.value);
+    });
+
+
+    function loadSegments() {
+        fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items=10&removed=false`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(segments => {
+            segmentSelect.innerHTML = '<option value="">Select a Segment</option>';
+            segments.forEach(segment => {
+                const option = document.createElement('option');
+                option.value = segment.id;
+                option.textContent = segment.name;
+                segmentSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching segments:', error);
+        });
+    }
+
+    function loadMemberships(segmentId) {
+        if (!segmentId) {
+            membershipSelect.innerHTML = '<option value="">Select a Membership</option>';
+            membershipsContainer.innerHTML = '';  // Limpiar el contenedor de membresías también
+            return;
+        }
+    
+        fetch(`https://sandbox-api.foplatform.com/membership/list/${segmentId}?page=1&no_items=10`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(memberships => {
+            // Actualizar el select de memberships
+            membershipSelect.innerHTML = '<option value="">Select a Membership</option>';
+            memberships.forEach(membership => {
+                const option = document.createElement('option');
+                option.value = membership.id;
+                option.textContent = membership.name;
+                membershipSelect.appendChild(option);
+            });
+    
+            // Actualizar el contenedor de detalles de memberships
+            console.log(memberships); // Para depuración y ver los datos de las membresías
+            membershipsContainer.innerHTML = `<h3>Memberships: (${memberships.length})</h3>`;
+            memberships.forEach(membership => {
+                membershipsContainer.innerHTML += `<h4>Membership Name: ${membership.name}</h4>`;
+                membershipsContainer.innerHTML += `<p>Membership ID: ${membership.id}</p>`;
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching memberships:', error);
+            membershipSelect.innerHTML = '<option value="">Select a Membership</option>';
+            membershipsContainer.innerHTML = 'Error loading memberships.';
+        });
+    }
+    
+
+
+
+    function loadMembershipLevels(membershipId) {
+        if (!membershipId) {
+            console.warn('No membershipId provided');
+            return;
+        }
+    
+        fetch(`https://sandbox-api.foplatform.com/membership-level/list/${membershipId}?page=1&no_items=10`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(levels => {
+            membershipLevelsContainer.innerHTML = `<h3>Membership Levels: (${levels.length})</h3>`;
+            if (levels && levels.length > 0) {
+                levels.forEach(level => {
+                    membershipLevelsContainer.innerHTML += `<div><h4>Level Name: ${level.name}</h4><p>Level ID: ${level.id}</p></div>`;
+                });
+            } else {
+                membershipLevelsContainer.innerHTML += '<p>No levels found for this membership.</p>';
+            }
+        })
+        .catch(error => console.error('Error loading membership levels:', error));
+    }
+
+
+// Mostrar Custom Fields
+membershipSelect.addEventListener('change', function() {
     const membershipId = this.value;
     if (membershipId) {
         fetch(`https://sandbox-api.foplatform.com/membership-custom-field/list/${membershipId}?page=1&no_items=50`, {
@@ -89,7 +187,9 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
     }
 });
 
- // Mostrar Users
+    
+
+// Mostrar Users
  membershipSelect.addEventListener('change', function() {
     const membershipId = this.value;
     if (membershipId) {
@@ -115,6 +215,12 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
     }
 });
 
+  // Asegúrate de que este evento se dispara correctamente
+  membershipSelect.addEventListener('change', function() {
+    const selectedMembershipId = membershipSelect.value;
+    loadMembershipLevels(selectedMembershipId);
+});
+
 
     // Configuración del botón de logout
     const logoutButton = document.getElementById('logoutButton');
@@ -127,8 +233,3 @@ fetch(`https://sandbox-api.foplatform.com/segment/list/${userId}?page=1&no_items
         });
     }
 });
-
-
-
-
-
