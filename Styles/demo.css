@@ -16,12 +16,6 @@ pre {
 .token.variable {
   background: none; }
 
-input, select {
-  border: 1px solid #CCC;
-  width: 250px; 
-  margin-top: 0.5em;
-}
-
 
 ::-webkit-input-placeholder {
   color: #BBB; }

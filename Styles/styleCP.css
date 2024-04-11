@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box; }
+
 body {
     font-family: 'Manrope', sans-serif;
     background-color: rgb(25, 39, 52);
@@ -8,6 +12,7 @@ body {
     justify-content: center;
     align-items: center;
     height: auto;
+    width: auto;
 }
 
 
@@ -18,16 +23,37 @@ body {
     margin-top: 0.1em;
 }  
 
-.form-container, .form-container1, .login-container, .cp-container {
+.form-container, 
+.form-container1, 
+.login-container, 
+.cp-container {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 100%; /* Use full width */
-    max-width: 300px; /* Maximum width */
+    max-width: 600px; /* Maximum width */
+    margin: auto;
 }
 
-.form-container1  {
+#createMUForm  {
+    max-width: 400px; /* Maximum width */
+}
+
+.form-container p {
+   width: auto;
+}
+
+
+#createMUForm p {
+    margin: 0;
+    padding: 0.5em 0.1em;
+    width: 28em;
+    text-align: center;
+    font-size: 0.8rem;
+
+}
+.form-container1 {
     max-width: 600px; /* Maximum width */
 }
 
@@ -107,9 +133,11 @@ input, select {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    margin-top: 0.5em;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="tel"]  {
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
@@ -132,8 +160,10 @@ input[type="checkbox"] {
 
 .checkbox-container {
     display: flex;
-    align-items: center; /* Alinea verticalmente el checkbox y el label */
-    gap: 8px; /* Añade espacio entre el checkbox y el label */
+    align-content: center; 
+    align-items: center; 
+    text-align: left;
+    gap: 5px; 
 }
 
 /* Opcional: Añade estilos adicionales para el label o el checkbox si es necesario */
@@ -152,25 +182,19 @@ select {
     text-align: left;
 }
 
-#showP {
-    display:flex;
-    align-content: center;
-    align-items: center;
-}
-
-#showP p{
-    text-align: left;
-}
-
 
 button {
-    padding: 10px;
     background-color: rgb(101, 188, 70);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 0.5em;
+    padding: 10px;
+}
+
+input, button {
+    width: 100%; 
 }
 
 
@@ -212,13 +236,15 @@ button:hover,
 
 
 
-@media (max-width: 768px) {
-    .form-container {
-        margin: 10px; /* Add some margin on smaller screens */
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 10px;
+            width: 95%; /* Use full width */
+        }
+    
+        input, button {
+            font-size: smaller; /* Reduce el tamaño del texto en pantallas más pequeñas */
+        }
     }
-    body {
-        display: block; /* Stack elements vertically on small screens */
-        height: auto; /* Adjust height for small screens */
-        padding: 10px; /* Add some padding */
-    }
-}
+
+

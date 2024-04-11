@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FO Platform Master User Registration</title>
     <link rel="stylesheet" href="/Styles/styleCP.css">
     <link href="../Styles/demo.css" rel="stylesheet">
@@ -9,7 +10,7 @@
 </head>
 <body>
     <a href="../index.html"><img id="img-fo" src="/images/FOLogo.png"></a>
-    <div class="form-container">
+    <div class="form-container" id="createMUForm">
         <h2>Create a Master User</h2>
         <p>Obtain the User ID and Token that you will need to unlock all of FO Platform´s API capabilites in our Sandbox at Swagger</p>
         <form id="userForm">
@@ -18,7 +19,7 @@
             <input type="tel" id="mobile" placeholder="Mobile" required>
             <input type="password" id="password" placeholder="Password" required>
             <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-            <div id="showP"><input type="checkbox" id="showPassword"> <p>Show password</p></div>
+            <div class="checkbox-container"><input type="checkbox" id="showPassword"> <p>Show password</p></div>
             <input type="hidden" id="lang" value="es">
             <button type="submit">Create Master User</button>
         </form>
