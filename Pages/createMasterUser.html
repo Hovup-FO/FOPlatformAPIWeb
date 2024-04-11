@@ -25,10 +25,15 @@
     </div>
     <script src="/Scripts/createMasterUser.js"></script>
     <script src="../Scripts/intlTelInput.js"></script>
-    <script> const input = document.querySelector("#mobile")
-                window.intlTelInput(input,{})
-    </script> 
-
+    <script>
+        var input = document.querySelector("#mobile");
+        window.intlTelInput(input, {
+            // Utiliza el script de utilidades para formato y validación
+            utilsScript: "../Scripts/utils.js",
+            nationalMode: false, // para incluir el código de país en el valor
+            autoPlaceholder: "aggressive"
+        });
+    </script>
  
 </body>
 </html>

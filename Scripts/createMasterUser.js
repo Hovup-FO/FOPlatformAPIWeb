@@ -8,11 +8,14 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     const mobileField = document.getElementById('mobile');
     const langField = document.getElementById('lang');
 
+    // Obtiene la instancia de intlTelInput
+    const iti = window.intlTelInputGlobals.getInstance(mobileField);
+    const mobileFull = iti.getNumber(); // Obtiene número completo con código de país
+
     const email = emailField.value;
     const password = passwordField.value;
     const confirmPassword = confirmPasswordField.value;
     const name = nameField.value;
-    const mobile = mobileField.value;
     const lang = langField.value;
 
     if (password !== confirmPassword) {
@@ -30,7 +33,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
                 return createUser({
                     email: email,
                     name: name,
-                    mobile: mobile,
+                    mobile: mobileFull, // Usa el número completo aquí
                     password: password,
                     lang: lang
                 });
@@ -38,7 +41,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         })
         .then(user => {
             if (user) {
-                return validateUser(user.id, mobile); // Usar 'id' de la respuesta y 'mobile' del formulario
+                return validateUser(user.id, mobileFull); // Usa el número completo aquí
             }
         })
         .then(validationResponse => {
