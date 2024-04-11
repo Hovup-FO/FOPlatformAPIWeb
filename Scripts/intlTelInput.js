@@ -102,7 +102,7 @@
             // number type to use for placeholders
             placeholderNumberType: "MOBILE",
             // the countries at the top of the list. defaults to united states and united kingdom
-            preferredCountries: [ "us", "mx" ],
+            preferredCountries: [ "us", "mx", "ca" , "co", "pe" ],
             // display the country dial code next to the selected flag so it's not part of the typed number
             separateDialCode: true,
             // specify the path to the libphonenumber script to enable validation/formatting
