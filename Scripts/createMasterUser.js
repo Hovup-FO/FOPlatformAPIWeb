@@ -11,6 +11,9 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     const email = emailField.value;
     const password = passwordField.value;
     const confirmPassword = confirmPasswordField.value;
+    const name = nameField.value;
+    const mobile = mobileField.value;
+    const lang = langField.value;
 
     if (password !== confirmPassword) {
         alert('The passwords don’t match.');
@@ -18,50 +21,45 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
     }
 
     checkUserAvailability(email)
-        .then(isAvailable => {
-            if (!isAvailable) {
+        .then(userExists => {
+            if (userExists) {
                 alert('Your email already exists in our database');
                 clearFormFields();
                 return null;
-            }
-
-            const userData = {
-                email: email,
-                name: nameField.value,
-                mobile: mobileField.value,
-                password: password,
-                lang: langField.value
-            };
-
-            return createUser(userData);
-        })
-        .then(data => {
-            if (data) {
-                console.log('User created:', data);
-                return validateUser(data.id);
+            } else {
+                return createUser({
+                    email: email,
+                    name: name,
+                    mobile: mobile,
+                    password: password,
+                    lang: lang
+                });
             }
         })
-        .then(data => {
-            if (data) {
-                console.log('The User has been created and validated successfully.');
-                localStorage.setItem('userId', data.userId);
-                window.location.href = '/Pages/login.html?success=true';
+        .then(user => {
+            if (user) {
+                return validateUser(user.id, mobile); // Usar 'id' de la respuesta y 'mobile' del formulario
             }
         })
-        .catch((error) => {
+        .then(validationResponse => {
+            if (validationResponse) {
+                window.location.href = 'login.html?success=true';
+            }
+        })
+        .catch(error => {
             console.error('Error:', error);
-            alert('Error creating user');
+            alert('Error processing your request');
         });
-
-    function clearFormFields() {
-        emailField.value = '';
-        passwordField.value = '';
-        confirmPasswordField.value = '';
-        nameField.value = '';
-        mobileField.value = '';
-        langField.value = '';
-    }
 });
+
+function clearFormFields() {
+    document.getElementById('email').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('confirmPassword').value = '';
+    document.getElementById('name').value = '';
+    document.getElementById('mobile').value = '';
+    document.getElementById('lang').value = '';
+}
 
 function checkUserAvailability(email) {
     return fetch(`https://sandbox-api.foplatform.com/user/available?key=${encodeURIComponent(email)}`, {
@@ -72,10 +70,10 @@ function checkUserAvailability(email) {
     })
     .then(response => {
         if (response.ok) {
-            return false; // Email already exists
+            return true;
         }
         if (response.status === 404) {
-            return true; // Email is available
+            return false;
         }
         throw new Error('Error checking user availability');
     });
@@ -90,31 +88,35 @@ function createUser(userData) {
         },
         body: JSON.stringify(userData)
     })
-    .then(response => response.json());
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to create user');
+        }
+        return response.json();
+    });
 }
 
-function validateUser(userId) {
-    const validationData = {
-        verification_code: "00000",
-        user_id: userId
-    };
-
+function validateUser(userId, mobile) {
     return fetch('https://sandbox-api.foplatform.com/user/validate-code', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'accept': 'application/json',
         },
-        body: JSON.stringify(validationData)
+        body: JSON.stringify({
+            verification_code: "00000",
+            user_id: userId,
+            phone: mobile
+        })
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('User validated:', data);
-        return { userId: userId, accessToken: data.access_token };
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to validate user');
+        }
+        return response.json();
     });
 }
 
-// Funcionalidad para mostrar/ocultar contraseña
 const showPasswordCheckbox = document.getElementById('showPassword');
 if (showPasswordCheckbox) {
     showPasswordCheckbox.addEventListener('change', function() {
