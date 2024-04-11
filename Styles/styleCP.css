@@ -32,7 +32,7 @@ body {
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 100%; /* Use full width */
-    max-width: 600px; /* Maximum width */
+    max-width: 400px; /* Maximum width */
     margin: auto;
 }
 
@@ -164,9 +164,7 @@ input[type="checkbox"] {
     justify-content: flex-start;
     align-content: center; 
     align-items: center; 
-    text-align: left;
-    margin-bottom: 15px; /* Añade espacio debajo del contenedor */
-    gap: 5px; 
+    margin-bottom: 0.5em; /* Añade espacio debajo del contenedor */
 }
 
 /* Opcional: Añade estilos adicionales para el label o el checkbox si es necesario */
