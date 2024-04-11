@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        fetch(`https://sandbox-api.foplatform.com/segment/${selectedSegmentId}?page=1&no_items=10&removed=false`, {
+        fetch(`https://sandbox-api.foplatform.com/segment/${selectedSegmentId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${accessToken}`

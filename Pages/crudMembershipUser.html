@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="/Styles/styleCP.css">
 </head>
 <body>
-    <a href="../index.html"><img id="img-fo" src="/images/FOLogo.png"></a>
+    <img id="img-fo" src="/images/FOLogo.png">
     <div class="form-container1">
         <h2>CRUD a Membership User in a Membership Configuration</h2>
         <p>Here you can create, read, update or delete a user according to the already establshed parameters of the Membership User Endpoint or/and the Custom Fields that you defined when you created the membership configuration. </p>
@@ -46,6 +46,10 @@
             <button class="editButton" type="submit" id="editMembershipUserButton">Edit a Membership User</button>
             <button class="deleteButton" type="submit" id="deleteMembershipUserButton">Delete a Membership User</button>
         </form>
+    </div>
+    <div class="actions-cp">
+        <a href="/Pages/controlPanel.html"><i class="fa-solid fa-circle-arrow-left" id="backButton"></i></a>
+        <p>Back</p>
     </div>
     <script src="/Scripts/crudMembershipUser.js"></script>
 </body>

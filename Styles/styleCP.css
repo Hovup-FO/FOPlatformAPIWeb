@@ -102,8 +102,34 @@ body {
     gap: 0.5em;
 }
 
+.actions-cp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 1em;
+    width: 400px;
+}
 
+.actions-cp p{
+    font-size: 1.3rem;
+    color: rgb(101, 188, 70);
+    font-weight: bold;
+    margin: 0 0 0 0.5em;
+    padding: 0;
+    width: auto;
+}
 
+#backButton
+{
+    font-size: 1.5rem;
+    color: rgb(101, 188, 70);
+}
+
+#backButton:hover
+{
+    color:whitesmoke;
+}
 
 h2{
     margin: 0;
@@ -159,21 +185,29 @@ input[type="checkbox"] {
 }
 
 .checkbox-container {
-    width: 100%;
+    width: 40%;
     display: flex;
-    justify-content: flex-start;
-    align-content: center; 
-    align-items: center; 
-    margin-bottom: 0.5em; /* Añade espacio debajo del contenedor */
+    align-items: center;
+    justify-content:flex-start;
+    margin-bottom: 0.5em; 
 }
 
-/* Opcional: Añade estilos adicionales para el label o el checkbox si es necesario */
-.checkbox-container label {
-    cursor: pointer;
+.checkbox-container p {
+    width: auto;
+    text-align: left;
+    margin: 0;
+    padding:0;
 }
+
+.checkbox-container input{
+    width: auto;
+}
+
 
 .checkbox-container input[type="checkbox"] {
     cursor: pointer;
+    border: 2px solid red;
+    width: auto;
 }
 
 

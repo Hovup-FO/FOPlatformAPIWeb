@@ -4,10 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
     <title>Delete Membership Level</title>
+    <meta name="description" content="The best API engine to develop your projects" />
+    <meta property="og:title" content="FO Platform" />
+    <meta property="og:url" content="https://foplatform.com" />
+    <meta property="og:description" content="The best API engine to develop your projects" />
+    <meta property="og:image" content="/images/FOLogo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">      
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bef8a819f6.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../Styles/styleCP.css">
 </head>
 <body>
-    <a href="/index.html"><img id="img-fo" src="../images/FOLogo.png"></a>
+    <img id="img-fo" src="../images/FOLogo.png">
     <div class="form-container">
         <h2>Delete a Membership Level</h2>
         <select id="segmentSelect2">
@@ -20,6 +34,10 @@
             <!-- Las opciones de niveles de membresías se cargarán aquí -->
         </select>
         <button id="deleteMembershipLevelButton">Delete Selected Membership Level</button>
+    </div>
+    <div class="actions-cp">
+        <a href="/Pages/controlPanel.html"><i class="fa-solid fa-circle-arrow-left" id="backButton"></i></a>
+        <p>Back</p>
     </div>
     <script src="../Scripts/deleteMembershipLevel.js"></script>    
 </body>
