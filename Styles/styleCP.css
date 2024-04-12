@@ -239,6 +239,21 @@ input, button {
     width: 100%; 
 }
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.input-group label {
+    margin-bottom: 5px;
+}
+
+textarea {
+    width: 100%;  
+}
+
+
 
 .deleteButton, .rudButton:hover{
     background-color: red;

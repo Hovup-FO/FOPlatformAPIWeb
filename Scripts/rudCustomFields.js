@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
             membershipSelect.innerHTML = '<option value="">Select a Membership</option>';
             return;
         }
-
+    
         fetch(`https://sandbox-api.foplatform.com/membership/list/${segmentId}?page=1&no_items=10`, {
             method: 'GET',
             headers: {
@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(memberships => {
+            console.log("Received Memberships Data:", memberships);  // Agrega esta línea para ver los datos en la consola
             membershipSelect.innerHTML = '<option value="">Select a Membership</option>';
             memberships.forEach(membership => {
                 const option = document.createElement('option');
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error fetching memberships:', error);
         });
     }
+    
 
     function loadCustomFields(membershipId) {
         if (!membershipId) {
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
+            console.log("Custom Field Data:", data);  // Log para ver los datos recibidos
             populateCustomFieldEditForm(data);
         })
         .catch(error => {
@@ -128,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function populateCustomFieldEditForm(data) {
         editContainer.innerHTML = '';
-    
         const nameInput = createInputField('Name', 'name', data.name);
         const typeSelect = createSelectField('Type', 'type', data.type, ['dropdown', 'multiple', 'number', 'string', 'url', 'curp', 'text', 'rfc', 'email', 'clabe', 'boolean']);
         const positionInput = createInputField('Position', 'position', data.position, 'number');
@@ -136,18 +138,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const statusCheckbox = createCheckbox('Status', 'status', data.status);
         const requiredCheckbox = createCheckbox('Required', 'required', data.required);
         const renderCheckbox = createCheckbox('Render', 'render', data.render);
+       
         const optionsContainer = document.createElement('div');
-    
+        optionsContainer.id = 'optionsContainer';
+
+        const tooltipInput = createInputField('Tooltip', 'tooltip', data.tooltip, 'textarea');
+        
         typeSelect.querySelector('select').addEventListener('change', function() {
-            if (this.value === 'dropdown' || this.value === 'multiple') {
-                let optionsText = '';
-                if (Array.isArray(data.options)) {
-                    optionsText = data.options.map(option => `${option.key}:${option.value}`).join(', ');
-                }
-                optionsContainer.innerHTML = `<textarea name="options" placeholder="Enter options as key:value pairs separated by commas. For example, key1:value1, key2:value2">${optionsText}</textarea>`;
-            } else {
-                optionsContainer.innerHTML = '';
-            }
+            updateOptionsInput(this.value, data.options, optionsContainer);
         });
     
         editContainer.appendChild(nameInput);
@@ -157,19 +155,51 @@ document.addEventListener('DOMContentLoaded', function() {
         editContainer.appendChild(statusCheckbox);
         editContainer.appendChild(requiredCheckbox);
         editContainer.appendChild(renderCheckbox);
+        editContainer.appendChild(tooltipInput);  
         editContainer.appendChild(optionsContainer);
     
+        // Disparar el evento de cambio manualmente para configurar el estado inicial correctamente
         typeSelect.querySelector('select').dispatchEvent(new Event('change'));
+    }
     
-        if (Array.isArray(data.options)) {
-            data.options.forEach((option, index) => {
-                const keyInput = createInputField(`Option ${index + 1} Key`, `optionKey${index}`, option.key);
-                const valueInput = createInputField(`Option ${index + 1} Value`, `optionValue${index}`, option.value);
-                editContainer.appendChild(keyInput);
-                editContainer.appendChild(valueInput);
-            });
+    function updateOptionsInput(type, options, container) {
+        if (type === 'dropdown' || type === 'multiple') {
+            let optionsText = '';
+    
+            // Asegurar la creación del label para Options
+            const label = document.createElement('label');
+            label.textContent = 'Options';
+            label.htmlFor = 'options-textarea';  // Asocia el label con el textarea
+    
+            // Creación del textarea para las opciones
+            const textarea = document.createElement('textarea');
+            textarea.id = 'options-textarea';
+            textarea.name = 'options';
+            textarea.placeholder = "Enter options as key:value pairs separated by commas. For example, key1:value1, key2:value2";
+            
+            try {
+                if (typeof options === 'string') {
+                    options = JSON.parse(options);
+                }
+                if (Array.isArray(options)) {
+                    optionsText = options.map(option => `${option.key}:${option.value}`).join(', ');
+                }
+                textarea.value = optionsText;  // Usar value para establecer el contenido del textarea
+            } catch (e) {
+                console.error('Error parsing options:', e);
+            }
+    
+            container.innerHTML = ''; // Limpia el contenedor antes de agregar nuevos elementos
+            container.appendChild(label);
+            container.appendChild(textarea);  // Añadir textarea al contenedor
+        } else {
+            container.innerHTML = '';
         }
     }
+    
+    
+    
+        
     
     editButton.addEventListener('click', function(event) {
         event.preventDefault();
@@ -209,18 +239,48 @@ function createSelectField(labelText, name, selectedValue, options) {
 }
 
 
-    function createInputField(labelText, name, value, type = 'text') {
-        const label = document.createElement('label');
-        label.textContent = labelText;
-    
-        const input = document.createElement('input');
+function createInputField(labelText, name, value, type = 'text') {
+    const label = document.createElement('label');
+    label.textContent = labelText;
+
+    let input;
+    if (type === 'textarea') {
+        input = document.createElement('textarea');
+        input.name = name;
+        input.rows = 4;  // Puedes ajustar el número de filas según tus necesidades
+        input.cols = 25; // Puedes ajustar el número de columnas según tus necesidades
+        input.textContent = value; // Usar textContent para textarea
+    } else {
+        input = document.createElement('input');
         input.type = type;
         input.name = name;
         input.value = value;
-    
-        label.appendChild(input);
-        return label;
     }
+
+    label.appendChild(input);
+    return label;
+}
+
+function createOptionsField() {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('input-group'); // Uso consistente de clases para alineación
+
+    const label = document.createElement('label');
+    label.textContent = 'Options';
+    label.htmlFor = 'options';  // Asegúrate de que el ID coincida
+
+    const textarea = document.createElement('textarea');
+    textarea.name = 'options';
+    textarea.id = 'options'; // ID usado en el htmlFor del label
+    textarea.placeholder = "Enter options as key:value pairs separated by commas. For example, key1:value1, key2:value2";
+    textarea.rows = 4;
+    textarea.cols = 50;
+
+    wrapper.appendChild(label);
+    wrapper.appendChild(textarea);
+    return wrapper;
+}
+
 
     function createCheckbox(labelText, name, checked) {
         const label = document.createElement('label');
