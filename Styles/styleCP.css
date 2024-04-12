@@ -25,8 +25,7 @@ body {
 
 .form-container, 
 .form-container1, 
-.login-container, 
-.cp-container {
+.login-container {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
@@ -37,7 +36,13 @@ body {
 }
 
 .cp-container{
-    max-width: 900px; /* Maximum width */
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px; /* Maximum width */
+    margin: auto;
 }
 
 .login-container{
