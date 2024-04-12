@@ -96,30 +96,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    document.querySelector('.searchButton').addEventListener('click', function(event) {
+        const membershipId = document.querySelector('[name="search-text"]').value.trim();
+        if (membershipId) {
+            fetchMembershipUserDetails(membershipId);
+        } else {
+            console.log("Please enter a valid membership ID.");
+            document.getElementById('membershipUserEditContainer').innerHTML = 'Please enter a valid membership ID.';
+        }
+    });
+    
+
+
     function fetchMembershipUserDetails(membershipId) {
         fetch(`https://sandbox-api.foplatform.com/membership-user/${membershipId}`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${accessToken}`,
+                'Authorization': `Bearer ${accessToken}`,  // Asume que accessToken ya está correctamente definido.
                 'Accept': 'application/json'
             }
         })
         .then(response => response.json())
         .then(userDetails => {
-            editContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevos detalles
-            Object.keys(userDetails).forEach(key => {
-                const valueElement = document.createElement('p');
-                valueElement.textContent = `${key}: ${userDetails[key]}`;
-                editContainer.appendChild(valueElement);
-            });
+            displayUserDetails(userDetails);  // Usar la función para crear campos editables
         })
         .catch(error => {
             console.error('Error fetching membership user details:', error);
             editContainer.innerHTML = `Error: ${error.message}`;
         });
     }
+    
+    
 
-
+    function displayUserDetails(userDetails) {
+        const editContainer = document.getElementById('membershipUserEditContainer');
+        editContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevos detalles.
+    
+        Object.keys(userDetails).forEach(key => {
+            const value = userDetails[key];
+            createEditableField(editContainer, key, value);
+        });
+    }
+    
+    function createEditableField(container, key, value) {
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('input-group');
+    
+        const label = document.createElement('label');
+        label.htmlFor = key;
+        label.textContent = formatLabel(key);
+    
+        if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
+            // Si el valor es un objeto, crea campos para cada propiedad del objeto
+            Object.keys(value).forEach(subKey => {
+                createEditableField(wrapper, `${key}.${subKey}`, value[subKey]);
+            });
+        } else {
+            // Para valores normales o null
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = key;
+            input.name = key;
+            input.value = value === null ? '' : value;  // Convertir null a cadena vacía
+            wrapper.appendChild(label);
+            wrapper.appendChild(input);
+        }
+    
+        container.appendChild(wrapper);
+    }
+    
+    function formatLabel(key) {
+        // Capitaliza y reemplaza underscores por espacios para las etiquetas
+        return key.split('.').map(part => part.charAt(0).toUpperCase() + part.slice(1).replace(/_/g, ' ')).join(' - ');
+    }
+    
+    
 
 
     
