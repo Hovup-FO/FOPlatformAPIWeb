@@ -3,7 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = localStorage.getItem('userId');
     const segmentSelect = document.getElementById('segmentSelect5');
     const membershipSelect = document.getElementById('membershipSelect5');
-    const customFieldSelect = document.getElementById('customFieldSelect5'); // Selector de Custom Fields
+    const searchInput = document.querySelector('[name="search-text"]');
+    const searchButton = document.querySelector('button[type="submit"]');
+    const editContainer = document.getElementById('membershipUserEditContainer');
+
 
 
     if (!accessToken || !userId) {
@@ -15,19 +18,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     segmentSelect.addEventListener('change', function() {
         loadMemberships(this.value);
+        loadMembershipUsers(this.value);  // Cargar usuarios de la membresía seleccionada
     });
 
     membershipSelect.addEventListener('change', function() {
-        loadCustomFields(this.value);
+        loadMembershipUsers(this.value);  // Cargar usuarios de la membresía seleccionada
     });
 
-    customFieldSelect.addEventListener('change', function() {
-        const customFieldId = this.value;
-        if (!customFieldId) {
-            editContainer.innerHTML = '';
-            return;
+    searchButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        const membershipId = searchInput.value.trim();
+        if (membershipId) {
+            fetchMembershipUserDetails(membershipId);
+        } else {
+            console.log("Please enter a valid membership ID.");
+            editContainer.innerHTML = 'Please enter a valid membership ID.';
         }
-        fetchCustomFieldDetails(customFieldId);
     });
 
     function loadSegments() {
@@ -53,11 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function loadMemberships(segmentId) {
-        if (!segmentId) {
-            membershipSelect.innerHTML = '<option value="">Select a Membership</option>';
-            return;
-        }
-
         fetch(`https://sandbox-api.foplatform.com/membership/list/${segmentId}?page=1&no_items=10`, {
             method: 'GET',
             headers: {
@@ -79,5 +80,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    function loadMembershipUsers(membershipId) {
+        fetch(`https://sandbox-api.foplatform.com/membership-user/list/${membershipId}?page=1&no_items=500`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+        .then(response => response.json())
+        .then(users => {
+            console.log('Loaded users:', users);  // Agregar manejo de visualización de usuarios aquí si es necesario
+        })
+        .catch(error => {
+            console.error('Error fetching membership users:', error);
+        });
+    }
 
+    function fetchMembershipUserDetails(membershipId) {
+        fetch(`https://sandbox-api.foplatform.com/membership-user/${membershipId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(userDetails => {
+            editContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevos detalles
+            Object.keys(userDetails).forEach(key => {
+                const valueElement = document.createElement('p');
+                valueElement.textContent = `${key}: ${userDetails[key]}`;
+                editContainer.appendChild(valueElement);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching membership user details:', error);
+            editContainer.innerHTML = `Error: ${error.message}`;
+        });
+    }
+
+
+
+
+    
+    
 });

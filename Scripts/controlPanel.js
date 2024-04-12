@@ -190,7 +190,7 @@ membershipSelect.addEventListener('change', function() {
     
 
 // Mostrar Users
- membershipSelect.addEventListener('change', function() {
+membershipSelect.addEventListener('change', function() {
     const membershipId = this.value;
     if (membershipId) {
         fetch(`https://sandbox-api.foplatform.com/membership-user/list/${membershipId}?page=1&no_items=100`, {
@@ -199,21 +199,60 @@ membershipSelect.addEventListener('change', function() {
                 'Authorization': `Bearer ${accessToken}`,
             }
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to fetch membership users');
+            return response.json();
+        })
         .then(membershipUsers => {
             const membershipUsersElement = document.getElementById('membershipUsers');
             membershipUsersElement.innerHTML = `<h3>Membership Users: (${membershipUsers.length})</h3>`;
             membershipUsers.forEach(membershipUser => {
-                membershipUsersElement.innerHTML += `<h4>Membership User Name: ${membershipUser.name}</h4>`;
-                membershipUsersElement.innerHTML += `<p>Custom Field ID: ${membershipUser.id}</p>`;
-        
+                handleUserDetails(membershipUser, membershipUsersElement);
             });
         })
         .catch(error => {
             console.error('Error fetching Membership Users:', error);
+            membershipUsersElement.innerHTML += `<p>Error: ${error.message}</p>`;
         });
     }
 });
+
+function handleUserDetails(membershipUser, membershipUsersElement) {
+    fetch(`https://sandbox-api.foplatform.com/user/${membershipUser.user_id}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) throw new Error('Failed to fetch user details');
+        return response.json();
+    })
+    .then(user => {
+        const userContainer = document.createElement('div');
+        userContainer.innerHTML = `
+            <h4>Membership User Name: ${membershipUser.name}</h4>
+            <p>Membership User ID: ${membershipUser.id}</p>
+            <p>Original User ID: ${membershipUser.user_id}</p>
+            <p>Card Number: ${membershipUser.card_number}</p>
+            <p>User Email: ${user.email || "Email not available"}</p>
+        `;
+        membershipUsersElement.appendChild(userContainer);
+    })
+    .catch(error => {
+        console.error(`Error fetching user details for user ID ${membershipUser.user_id}:`, error);
+        const errorElement = document.createElement('p');
+        errorElement.textContent = `Error fetching user details: ${error.message}`;
+        membershipUsersElement.appendChild(errorElement);
+    });
+}
+
+
+
+
+
+
 
   // Asegúrate de que este evento se dispara correctamente
   membershipSelect.addEventListener('change', function() {

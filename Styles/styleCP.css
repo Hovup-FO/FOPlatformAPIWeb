@@ -67,7 +67,7 @@ body {
 
 }
 .form-container1 {
-    max-width: 600px; /* Maximum width */
+    max-width: 550px; /* Maximum width */
 }
 
 .form-container1 p {
@@ -244,11 +244,12 @@ input, button {
     background-color: red;
 }
 
-#addLevelButton{
+#addLevelButton, .searchButton{
     background-color: blue;
     margin-bottom: 0.2em;
 }
 
+.searchButton:hover,
 .editButton:hover,
 .deleteButton:hover,
 .crudButton:hover,
