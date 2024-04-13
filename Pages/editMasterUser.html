@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FO Platform Master User RUDn</title>
+    <meta property="og:title" content="FO Platform" />
+    <meta property="og:url" content="https://foplatform.com" />
+    <meta property="og:description" content="The best API engine to develop your projects" />
+    <meta property="og:image" content="/images/FOLogo.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">      
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/bef8a819f6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/Styles/styleCP.css">
+    <link href="../Styles/demo.css" rel="stylesheet">
+    <link href="../Styles/intlTelInput.css" rel="stylesheet">
+</head>
+<body>
+    <img id="img-fo" src="/images/FOLogo.png">
+    <div class="form-container" id="createMUForm">
+        <h2>Master User Information</h2>
+        <p>Upadate the Information that you introduce when you created your Master User Account</p>
+        <form id="userForm">
+            <input type="email" id="email" name="email" disabled>
+            <input type="text" id="name" placeholder="Project Name" required>
+            <input type="tel" id="mobile" placeholder="Mobile" required>
+            <button type="submit">Edit your Master User</button>
+        </form> 
+    </div>
+    <div class="actions-cp">
+        <a href="/Pages/controlPanel.html"><i class="fa-solid fa-circle-arrow-left" id="backButton"></i></a>
+        <p>Back</p>
+    </div>
+    <script src="../Scripts/ruMasterUser.js"></script>
+    <script src="../Scripts/intlTelInput.js"></script>
+    <script>
+        var input = document.querySelector("#mobile");
+        window.intlTelInput(input, {
+            // Utiliza el script de utilidades para formato y validación
+            utilsScript: "../Scripts/utils.js",
+            nationalMode: false, // para incluir el código de país en el valor
+            autoPlaceholder: "aggressive"
+        });
+    </script>
+ 
+</body>
+</html>
