@@ -55,6 +55,29 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         });
 });
 
+// Este script se debe colocar en un archivo .js y enlazarlo desde la página HTML
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para obtener parámetros de la URL
+    function getQueryParam(param) {
+        var queryParams = new URLSearchParams(window.location.search);
+        return queryParams.get(param);
+    }
+
+    // Obtener el email de la URL
+    var email = getQueryParam('email');
+    
+    // Si hay un email, establecerlo como valor del campo de email en el formulario
+    if (email) {
+        var emailField = document.getElementById('email');
+        if (emailField) {
+            emailField.value = email;
+        }
+    }
+});
+
+
+
 function clearFormFields() {
     document.getElementById('email').value = '';
     document.getElementById('password').value = '';
