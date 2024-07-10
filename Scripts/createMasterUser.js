@@ -46,7 +46,7 @@ document.getElementById('userForm').addEventListener('submit', function(event) {
         })
         .then(validationResponse => {
             if (validationResponse) {
-                window.location.href = 'login.html?success=true';
+                window.location.href = 'https://dashboard.foplatform.com?success=true';
             }
         })
         .catch(error => {
